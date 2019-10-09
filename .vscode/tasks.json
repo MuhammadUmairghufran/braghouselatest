@@ -1,0 +1,49 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+        "reveal": "always",
+        "panel": "new"
+    },
+    "tasks": [
+        {
+            "taskName": "Build APK Debug",
+            "group": "build",
+            "type": "shell",
+            "windows": {
+                "command": "cd android; if($?) {./gradlew assembleDebug}"
+            },
+            "linux": {
+                "command": "cd android && ./gradlew assembleDebug"
+            }
+        },
+        {
+            "taskName": "Build APK Release",
+            "group": "build",
+            "type": "shell",
+            "windows": {
+                "command": "cd android; if($?) {./gradlew assembleRelease}"
+            },
+            "linux": {
+                "command": "cd android && ./gradlew assembleRelease"
+            }
+        },
+        {
+            "taskName": "Generate Android Debug apk",
+            "group": "build",
+            "type": "shell",
+            "command": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res &&  cd android  && gradlew assembleDebug"
+        },
+		 {
+            "taskName": "Generate Android Release apk",
+            "group": "build",
+            "type": "shell",
+            "command": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res &&  cd android  && gradlew assembleRelease"
+        },
+        {
+            "taskName": "Generate iOS Bundle",
+            "group": "build",
+            "type": "shell",
+            "command": "react-native bundle --platform ios --dev false --entry-file index.js --bundle-output ios/main.jsbundle"
+        }
+    ]
+}
